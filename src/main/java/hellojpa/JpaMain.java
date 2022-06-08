@@ -2,6 +2,7 @@ package hellojpa;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 public class JpaMain {
@@ -11,12 +12,22 @@ public class JpaMain {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory( "hello");
         EntityManager em = emf.createEntityManager();
 
-        em.clear();
+        EntityTransaction tx = em.getTransaction();
+
+        try {
+            tx.begin();
+
+            //todo
+
+            tx.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            tx.rollback();
+        } finally {
+            em.close();
+        }
+
         emf.close();
-
-
     }
-
-
 }
 

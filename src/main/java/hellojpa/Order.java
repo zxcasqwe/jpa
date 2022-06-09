@@ -62,7 +62,6 @@ public class Order {
         return member;
     }
 
-
     public Date getOrderDate() {
         return orderDate;
     }
